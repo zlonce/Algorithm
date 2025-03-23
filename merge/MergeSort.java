@@ -56,7 +56,7 @@ public class MergeSort{
     }
     //남은요소 복사
     while(i<n1) arr[k++] = L[i++];
-    while(i<n2) arr[k++] = R[j++];
+    while(j<n2) arr[k++] = R[j++];
   }
 
 
