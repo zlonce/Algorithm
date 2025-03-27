@@ -1,7 +1,6 @@
 import java.util.Scanner;
-
-public class PivotCount{
-  int count = 0;
+class PivotCount{
+  int count;
 }
 
 public class QuickPivotComparison{
@@ -9,11 +8,15 @@ public class QuickPivotComparison{
     int[] array = getInputArray();
     int[] arr1 = array.clone();
     int[] arr2 = array.clone();
-
-    medianPivot(arr1, 0, arr1.length-1, PivotCount count);
+    
+    PivotCount medianCount = new PivotCount();
+    medianPivot(arr1, 0, arr1.length-1, medianCount);
+    System.out.println("Median 방식  Pivot 선택 횟수: " + medianCount.count);
     printArray(arr1);
 
-    randomPivot(arr2, 0, arr2.length-1, PivotCount count);
+    PivotCount randomCount = new PivotCount();
+    randomPivot(arr2, 0, arr2.length-1, randomCount);
+    System.out.println("Random 방식 Pivot 선택 횟수: " + randomCount.count);
     printArray(arr2);
   }
 
