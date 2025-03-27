@@ -23,7 +23,7 @@ public class QuickSort{
 
   public static void quickSort(int[] arr, int left, int right){ 
     if(left < right){
-      int pivot = (left + right) / 2;
+      int pivot = left + (int)(Math.random() * (right - left + 1));
       swap(arr, left, pivot);
       
       int i = left + 1;

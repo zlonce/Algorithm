@@ -37,10 +37,8 @@ public class QuickPivotComparison{
     if(left < right){
       count.count++;
       int mid = (left + right) / 2;
-      if(arr[left]>arr[mid]) swap(arr, left, mid);
-		  if(arr[mid]>arr[right]) swap(arr, mid, right);
-		  if(arr[left]>arr[mid]) swap(arr, left, mid);
-      swap(arr, left, mid);
+      int pivot = median(arr, left, mid, right);
+      swap(arr, left, pivot);
       
       int i = left + 1;
       int j = right;
@@ -60,6 +58,11 @@ public class QuickPivotComparison{
     }
   }
 
+  public static void median(int[] arr, int left, int mid, int right){
+    if(arr[left]>arr[mid]) swap(arr, left, mid);
+    if(arr[mid]>arr[right]) swap(arr, mid, right);
+    if(arr[left]>arr[mid]) swap(arr, left, mid);
+  }
 
   public static void randomPivot(int[] arr, int left, int right, PivotCount count){
 
