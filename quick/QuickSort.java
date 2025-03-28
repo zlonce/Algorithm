@@ -31,11 +31,12 @@ public class QuickSort{
       int j = right;
 
       while (i <= j){// pivot을 기준으로 분할
-        //pivot보다 작은값, 큰값을 찾아 교환
+        //pivot보다 큰 값을 찾을 때까지 왼쪽으로 이동
         while(i <= right && arr[i] <= arr[left]) i++;
-        while(j >= left + 1 && arr[j] > arr[left]) j--;
+        //pivot보다 작은 값을 찾을 때까지 오른쪽으로 이동
+        while(j >= left + 1 && arr[j] > arr[left]) j--; 
         if(i < j){
-          swap(arr, i, j);
+          swap(arr, i, j);// pivot보다 작은값, 큰값 위치 교환
         }
       }
 

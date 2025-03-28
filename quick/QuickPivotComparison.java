@@ -47,9 +47,11 @@ public class QuickPivotComparison{
       int j = right;
 
       while (i <= j){
+        //pivot보다 큰값을 찾을 때까지 오른쪽으로 이동
         while(i <= right && arr[i] <= arr[left]) i++;
+        //pivot보다 작은 값을 찾을 때까지 왼쪽으로 이동
         while(j >= left + 1 && arr[j] > arr[left]) j--;
-        if(i < j){
+        if(i < j){// pivot보다 큰값과 작은값 위치 교환
           swap(arr, i, j);
         }
       }
@@ -82,10 +84,11 @@ public class QuickPivotComparison{
       int j = right;
 
       while (i <= j){
-        //pivot보다 작은값 큰값을 찾아 위치 교체
+        //pivot보다 큰값을 찾을 때까지 오른쪽으로 이동
         while(i <= right && arr[i] <= arr[left]) i++;
+        //pivot보다 작은 값을 찾을 때까지 왼쪽으로 이동
         while(j >= left + 1 && arr[j] > arr[left]) j--;
-        if(i < j){
+        if(i < j){// pivot보다 큰값과 작은값 위치 교환
           swap(arr, i, j);
         }
       }
