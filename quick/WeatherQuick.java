@@ -11,7 +11,7 @@ class WeatherData{ //날씨데이터를 저장할 클래스
   }
 }
 
-class PivotCount{
+class PivotCount{ //pivot 횟수
   int count = 0;
 }
 
@@ -22,7 +22,7 @@ public class WeatherQuick{
 
     WeatherData[] arr = dataList.toArray(new WeatherData[0]); //리스트를 배열로 변환
     PivotCount pivotCount = new PivotCount();
-    quickSort3Way(arr, 0, arr.length-1, pivotCount); //mergesort 실행함수
+    quickSort3Way(arr, 0, arr.length-1, pivotCount); //quickSort 실행함수
     
     System.out.println("Pivot 선택 횟수: " + pivotCount.count);
     saveSortedData(arr); //정렬된 데이터 파일로 저장
@@ -45,34 +45,39 @@ public class WeatherQuick{
     return list;
   }
 
+  //3-way QuickSort 정렬 함수
   public static void quickSort3Way(WeatherData[] dataList, int left, int right, PivotCount count){
-    if(left >= right) return;
+    if(left >= right) return;// 정렬 필요없는 경우 종료
 
+      //pivot 랜덤 선택
       count.count++;
       int pivotIndex = left + (int)(Math.random() * (right - left + 1));
       WeatherData pivot = dataList[pivotIndex];
-      swap(dataList, left, pivotIndex);
+      swap(dataList, left, pivotIndex);//pivot을 가장 왼쪽으로 이동
 
-      int leftSection = left;
-      int i = left +1;
-      int rightSection = right;
+      //3-Way를 위한 인덱스 설정
+      int leftSection = left;// pivot보다 작은 값의 끝
+      int i = left +1;// 현재 비교
+      int rightSection = right;//pivot보다 큰 값을 시작
 
-      while(i <= rightSection){
+      while(i <= rightSection){// pivot 비교
         if (dataList[i].temp < pivot.temp){
           swap(dataList, leftSection++, i++);
         }
         else if(dataList[i].temp > pivot.temp){
           swap(dataList, i, rightSection--);
         }
-        else{
+        else{//pivot과 값이 같으면 다음 값을 비교
           i++;
         }
       }
-
+      
+      //pivot보다 작은 구간, 큰 구간 반복 정렬
       quickSort3Way(dataList, left, leftSection-1, count);
       quickSort3Way(dataList, rightSection+1, right, count);
   }
 
+  //배열의 두 요소 위치 변경
   public static void swap(WeatherData[] dataList, int i, int j){
     WeatherData tmp = dataList[i];
     dataList[i] = dataList[j];
